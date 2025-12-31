@@ -13,13 +13,16 @@
         }
 
         :root {
-            --color-text: #f5ebe0;
-            --color-accent: #ffd700;
+            --color-text: #e8f4f8;
+            --color-accent: #4fc3f7;
+            --color-year: #00d4ff;
+            --navy-dark: #0a1929;
+            --navy-mid: #1a2f42;
         }
 
         html, body {
             height: 100%;
-            background: #000;
+            background: var(--navy-dark);
         }
 
         body {
@@ -39,7 +42,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #0a0a1a 0%, #1a0f2e 100%);
+            background: linear-gradient(135deg, #0a1929 0%, #1a3a52 100%);
             z-index: 10000;
             transition: opacity 0.8s ease, visibility 0.8s ease;
         }
@@ -55,7 +58,7 @@
             font-weight: 300;
             letter-spacing: 0.1em;
             color: var(--color-accent);
-            text-shadow: 0 0 40px rgba(255, 215, 0, 0.6);
+            text-shadow: 0 0 40px rgba(79, 195, 247, 0.6);
             font-family: 'Courier New', monospace;
             margin-bottom: 0.5rem;
         }
@@ -86,13 +89,13 @@
             cursor: pointer;
             border-radius: 50px;
             transition: all 0.4s ease;
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+            box-shadow: 0 0 20px rgba(79, 195, 247, 0.3);
         }
 
         .start-btn:hover {
-            background: rgba(255, 215, 0, 0.1);
+            background: rgba(79, 195, 247, 0.1);
             transform: translateY(-2px);
-            box-shadow: 0 10px 40px rgba(255, 215, 0, 0.5);
+            box-shadow: 0 10px 40px rgba(79, 195, 247, 0.5);
         }
 
         .canvas-container {
@@ -122,12 +125,12 @@
             max-width: min(90%, 420px);
             width: 88%;
             max-height: min(55vh, 500px);
-            background: rgba(26, 15, 46, 0.85);
+            background: rgba(26, 47, 66, 0.85);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 215, 0, 0.2);
+            border: 1px solid rgba(79, 195, 247, 0.3);
             border-radius: 15px;
             padding: clamp(1rem, 3vw, 1.5rem) clamp(1rem, 3vw, 1.25rem);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 215, 0, 0.1);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(79, 195, 247, 0.15);
             text-align: center;
             overflow-y: auto;
             overflow-x: hidden;
@@ -138,17 +141,17 @@
         }
 
         #greeting-card::-webkit-scrollbar-track {
-            background: rgba(255, 215, 0, 0.1);
+            background: rgba(79, 195, 247, 0.1);
             border-radius: 10px;
         }
 
         #greeting-card::-webkit-scrollbar-thumb {
-            background: rgba(255, 215, 0, 0.4);
+            background: rgba(79, 195, 247, 0.4);
             border-radius: 10px;
         }
 
         #greeting-card::-webkit-scrollbar-thumb:hover {
-            background: rgba(255, 215, 0, 0.6);
+            background: rgba(79, 195, 247, 0.6);
         }
 
         #greeting-card.visible {
@@ -162,20 +165,44 @@
             left: 50%;
             transform: translateX(-50%);
             z-index: 200;
-            font-size: clamp(2rem, 7vw, 4.5rem);
+            font-size: clamp(2.5rem, 10vw, 5rem);
             color: var(--color-accent);
-            text-shadow: 0 0 40px rgba(255, 215, 0, 0.8), 0 0 80px rgba(255, 215, 0, 0.4);
-            letter-spacing: 0.08em;
+            text-shadow: 0 0 40px rgba(79, 195, 247, 0.8), 0 0 80px rgba(79, 195, 247, 0.4);
+            letter-spacing: 0.05em;
             opacity: 0;
             visibility: hidden;
             transition: opacity 1s ease 0.5s, visibility 1s ease 0.5s;
             text-align: center;
-            width: 90%;
+            width: 95%;
             margin: 0;
             padding: 0;
         }
 
         .greeting-header.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .year-number {
+            position: fixed;
+            top: clamp(15%, 12vh, 18%);
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 200;
+            font-size: clamp(4rem, 20vw, 8rem);
+            color: var(--color-year);
+            text-shadow: 0 0 50px rgba(0, 212, 255, 0.9), 0 0 100px rgba(0, 212, 255, 0.5);
+            letter-spacing: 0.1em;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 1s ease 0.5s, visibility 1s ease 0.5s;
+            text-align: center;
+            font-weight: 300;
+            margin: 0;
+            padding: 0;
+        }
+
+        .year-number.visible {
             opacity: 1;
             visibility: visible;
         }
@@ -192,7 +219,7 @@
         .greeting-footer {
             margin-top: clamp(0.75rem, 2vh, 1rem);
             padding-top: clamp(0.75rem, 2vh, 1rem);
-            border-top: 1px solid rgba(255, 215, 0, 0.15);
+            border-top: 1px solid rgba(79, 195, 247, 0.2);
             font-size: clamp(0.7rem, 2vw, 0.75rem);
             color: rgba(245, 235, 224, 0.6);
             font-style: italic;
@@ -218,11 +245,12 @@
 
     <canvas id="particle-canvas"></canvas>
 
-
-    <h1 class="greeting-header">Happy New Year 2026</h1>
+    <h1 class="greeting-header">Happy New Year!</h1>
+    <div class="year-number">2026</div>
 
     <div id="greeting-card">
-        <p class="greeting-text" id="greeting-text">To everyone I've crossed paths with—
+        <p class="greeting-text" id="greeting-text">
+            To everyone I've crossed paths with—
 thank you for being part of my journey, even in the simplest ways.
 
 I may not always say much, and I don't always show things openly,
@@ -238,8 +266,10 @@ and moments that make life feel a little lighter.
 
 Here's to moving forward—one step at a time,
 with hope, patience, and purpose.</p>
+        <div class="greeting-footer" id="greeting-footer">
             May 2026 bring you joy and growth ✨<br>
             -Peds
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/fscreen@1.2.0/dist/fscreen.min.js"></script>
@@ -300,9 +330,29 @@ with hope, patience, and purpose.</p>
 
         let particleSystem;
         let greetingCard;
+        let audioEnabled = false;
 
-        // Auto-start on page load
-        window.addEventListener('DOMContentLoaded', startFireworks);
+        // Create click-to-start overlay
+        window.addEventListener('DOMContentLoaded', () => {
+            // Try to start immediately (works on some browsers)
+            const immediateStart = () => {
+                audioEnabled = true;
+                startFireworks();
+            };
+            
+            // Attempt immediate start
+            immediateStart();
+            
+            // Also add click listener to entire document as fallback
+            document.addEventListener('click', () => {
+                if (!audioEnabled) {
+                    audioEnabled = true;
+                    if (soundManager && soundManager.ctx && soundManager.ctx.state === 'suspended') {
+                        soundManager.ctx.resume();
+                    }
+                }
+            }, { once: true });
+        });
 
         function startFireworks() {
             
@@ -313,13 +363,6 @@ with hope, patience, and purpose.</p>
 
             // Initialize fireworks first (this also initializes sound)
             initFireworks();
-            
-            // Play background music after audio context is ready
-            const bgMusic = document.getElementById('bg-music');
-            if (bgMusic) {
-                bgMusic.volume = 0.3;
-                bgMusic.play().catch(e => console.log('Audio play failed:', e));
-            }
             
             // Burst 1-3 random fireworks before showing card
             const burstCount = Math.floor(Math.random() * 3) + 1;
@@ -339,6 +382,7 @@ with hope, patience, and purpose.</p>
                     setTimeout(() => {
                         greetingCard.classList.add('visible');
                         document.querySelector('.greeting-header').classList.add('visible');
+                        document.querySelector('.year-number').classList.add('visible');
                     }, 1500);
                 }
             }, 400);
@@ -658,9 +702,11 @@ with hope, patience, and purpose.</p>
                 init() {
                     try {
                         this.ctx = new (window.AudioContext || window.webkitAudioContext)();
-                        // Resume audio context immediately to ensure sounds play
+                        // Try to resume audio context immediately
                         if (this.ctx.state === 'suspended') {
-                            this.ctx.resume();
+                            this.ctx.resume().catch(() => {
+                                console.log('Audio context suspended - will resume on user interaction');
+                            });
                         }
                     } catch (e) {
                         console.warn('Web Audio API not supported');
